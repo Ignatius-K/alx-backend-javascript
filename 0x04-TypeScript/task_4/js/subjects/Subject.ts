@@ -1,6 +1,3 @@
-/**
- * @namespace Subjects
- */
 namespace Subjects {
 	export class Subject {
 		teacher: Teacher

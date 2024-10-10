@@ -1,7 +1,3 @@
-/**
- * @namespace Subjects
- * Defines Subjects implementations
- */
 namespace Subjects {
 
 	/**

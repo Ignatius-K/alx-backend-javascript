@@ -1,4 +1,3 @@
-
 namespace Subjects {
 	export interface Teacher {
 		experienceTeachingJava?: never
