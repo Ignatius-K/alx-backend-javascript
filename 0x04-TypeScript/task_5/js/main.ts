@@ -9,12 +9,12 @@
 
 interface MajorCredits {
 	credits: number,
-	__brand: "major"
+	readonly __brand: "major"
 }
 
 interface MinorCredits {
 	credits: number,
-	__brand: "minor"
+	readonly __brand: "minor"
 }
 
 interface SumCredits<T> {
@@ -39,6 +39,3 @@ const sumMinorCredits: SumCredits<MinorCredits> = function(subject1, subject2) {
 		credits: subject1.credits + subject2.credits
 	} as MinorCredits
 }
-
-console.log(sumMajorCredits({ credits: 3 } as MajorCredits, { credits: 4 } as MajorCredits ))
-console.log(sumMinorCredits({ credits: 3 } as MinorCredits, { credits: 4 } as MinorCredits ))
