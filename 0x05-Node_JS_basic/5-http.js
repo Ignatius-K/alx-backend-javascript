@@ -16,10 +16,9 @@ const app = http.createServer((req, res) => {
       break;
     case '/students':
       res.write('This is the list of our students\n');
-      countStudents('database.csv').then((data) => {
+      countStudents(process.argv[2]).then((data) => {
         res.end(data.slice(0, -1));
       }).catch((error) => {
-        res.writeHead(505);
         res.end(error.message);
       });
       break;
