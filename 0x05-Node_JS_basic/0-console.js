@@ -13,7 +13,7 @@
  */
 function displayMessage(message) {
   if (message) {
-    process.stdout.write(`${message}\n`);
+    console.log(message);
   }
 }
 
