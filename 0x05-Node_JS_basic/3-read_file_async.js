@@ -10,18 +10,20 @@ const util = require('util');
 const readFile = util.promisify(fs.readFile);
 
 function logData(data) {
+  let message = '';
   const students = Object.values(data).reduce((prev, curr) => prev + curr.length, 0);
-  console.log(`Number of students: ${students}`);
+  message += `Number of students: ${students}\n`;
   for (const field of Object.keys(data)) {
     const _students = data[field];
-    console.log(`Number of students in ${
+    message += `Number of students in ${
       field
     }: ${
       _students.length
     }. List: ${
       _students.reduce((prev, curr) => (prev ? `${prev}, ${curr}` : curr), '')
-    }`);
+    }\n`;
   }
+  return message;
 }
 
 function formatData(_data) {
@@ -49,7 +51,9 @@ async function countStudents(file) {
   try {
     const data = (await readFile(file)).toString();
     const formattedData = formatData(data);
-    logData(formattedData);
+    const log = logData(formattedData);
+    console.log(log);
+    return log;
   } catch (error) {
     throw new Error('Cannot load the database');
   }
