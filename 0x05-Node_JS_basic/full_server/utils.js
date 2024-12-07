@@ -28,7 +28,6 @@ export default function formatData(_data) {
 export function logData(data) {
   let message = '';
   const students = Object.values(data).reduce((prev, curr) => prev + curr.length, 0);
-  message += `Number of students: ${students}\n`;
   for (const field of Object.keys(data)) {
     const _students = data[field];
     message += `Number of students in ${
