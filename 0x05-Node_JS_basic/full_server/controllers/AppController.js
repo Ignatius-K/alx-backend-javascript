@@ -5,6 +5,6 @@
 
 export default class AppController {
   static getHomePage(request, response) {
-    response.end('Hello ALX!');
+    response.end('Hello Holberton School!');
   }
 }
