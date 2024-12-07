@@ -51,9 +51,8 @@ export function readDatabase(file) {
   return new Promise((resolve, reject) => {
     readFile(file).then((data) => {
       resolve(formatData(data.toString()));
-    }).catch((err) => {
-      console.log(err);
-      reject(err);
+    }).catch(() => {
+      reject(new Error('Cannot load the database'));
     });
   });
 }

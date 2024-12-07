@@ -27,6 +27,7 @@ export default class StudentsController {
           }`);
           response.end();
         }).catch((error) => {
+          response.statusCode = 500;
           response.end(error.message);
         });
         break;
@@ -36,6 +37,7 @@ export default class StudentsController {
           }`);
           response.end();
         }).catch((error) => {
+          response.statusCode = 500;
           response.end(error.message);
         });
         break;
