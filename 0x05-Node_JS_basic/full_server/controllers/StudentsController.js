@@ -6,9 +6,9 @@ import { logData, readDatabase } from '../utils';
 
 export default class StudentsController {
   static getAllStudents(request, response) {
-    response.write('This is the list of our students\n');
     readDatabase(process.argv[2])
       .then((data) => {
+        response.write('This is the list of our students\n');
         response.write(logData(data));
       }).catch((error) => {
         response.statusCode = 500;
