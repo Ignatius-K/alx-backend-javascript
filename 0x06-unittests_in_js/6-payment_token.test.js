@@ -7,7 +7,7 @@ const { expect } = require('chai')
 
 const getPaymentTokenFromAPI = require('./6-payment_token')
 
-describe('getPaymentTokenFromAPI', function (done) {
+describe('getPaymentTokenFromAPI', function () {
   it('Test the function when success is true', function (done) {
     getPaymentTokenFromAPI(true)
       .then(() => done())
