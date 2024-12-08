@@ -1,42 +1,43 @@
 /**
- * @module 2-calcul.test
+ * @module 2-calcul_chai.test
  *
- * Defines the tests for the '2-calcul' module
+ * Defines the tests for the '2-calcul_chai' module
  */
 
-const assert = require('assert')
 
-const calculateNumber = require('./2-calcul')
+const expect = require('chai').expect
+
+const calculateNumber = require('./2-calcul_chai')
 
 describe('calculateNumber', function () {
   describe('Test arguments', function () {
     it('Test that error raised if args not provided', function () {
-      assert.throws(function () {
-        calculateNumber()
-      })
+      expect(calculateNumber).to.throw()
     })
 
     it('Test that exception is raised if `type` arg is not string', function () {
-      assert.throws(function () {
-        calculateNumber(2, 2, 2)
-      })
+      expect(
+        () => calculateNumber(2, 2, 2)
+      ).to.throw()
     })
 
     it('Test that if `type` arg is string, no exception is thrown', function () {
-      assert.doesNotThrow(function () {
-        calculateNumber('SUM', 1, 2)
-      }, 'Wrong argument type provided')
+      expect(
+        () => {
+          calculateNumber('SUM', 1, 2)
+        }, 'Wrong argument type provided'
+      ).to.not.throw()
     })
 
     it('Test that wrong type throws an exception', function () {
       const known_types = ['SUM', 'SUBTRACT', 'DIVIDE']
       known_types.forEach(type => {
-        assert.throws(function () {
-          calculateNumber(`${type}_`, 1, 2)
-        })
-        assert.doesNotThrow(function () {
-          calculateNumber(`${type}`, 1, 2)
-        })
+        expect(
+          () => calculateNumber(`${type}_`, 1, 2)
+        ).to.throw()
+        expect(
+          () => calculateNumber(`${type}`, 1, 2)
+        ).to.not.throw()
       })
     })
   })
@@ -45,12 +46,12 @@ describe('calculateNumber', function () {
     const SUM_OPERATION = 'SUM'
     it('Test sum operation returns result', function () {
       const result = calculateNumber(SUM_OPERATION, 1, 2)
-      assert.notEqual(result, undefined)
+      expect(result).to.not.be.undefined
     })
     
     it('Test sum operation perform sum arithmetic', function () {
       const result = calculateNumber(SUM_OPERATION, 1, 2)
-      assert.equal(result, 3)
+      expect(result).to.equal(3)
     })
 
     it('Test sum operation rounds off the args before operation', function () {
@@ -61,8 +62,7 @@ describe('calculateNumber', function () {
         [1.49999999, 2.49999999, 3],
       ]
       testCases.forEach(testCase => {
-        assert.equal(calculateNumber(SUM_OPERATION, testCase[0], testCase[1]), testCase[2])
-        assert.strictEqual(calculateNumber(SUM_OPERATION, testCase[0], testCase[1]), testCase[2])
+        expect(calculateNumber(SUM_OPERATION, testCase[0], testCase[1])).to.equal(testCase[2])
       })
     })
   })
@@ -71,7 +71,7 @@ describe('calculateNumber', function () {
     const SUB_OPERATION = 'SUBTRACT'
     it('Test subtract operation returns value', function () {
       const result = calculateNumber(SUB_OPERATION, 3, 2)
-      assert.notEqual(result, undefined)
+      expect(result).to.not.be.undefined
     })
 
     it('Test that subtract operation args are rounded', function () {
@@ -79,8 +79,7 @@ describe('calculateNumber', function () {
         [2, 1, 1], [2.5, 1.6, 1], [2.5, 1.2, 2], [1.2, 0.7, 0]
       ]
       testCases.forEach(testCase => {
-        assert.equal(calculateNumber(SUB_OPERATION, testCase[0], testCase[1]), testCase[2])
-        assert.strictEqual(calculateNumber(SUB_OPERATION, testCase[0], testCase[1]), testCase[2])
+        expect(calculateNumber(SUB_OPERATION, testCase[0], testCase[1])).to.equal(testCase[2])
       })
     })
 
@@ -90,7 +89,7 @@ describe('calculateNumber', function () {
     const DIVIDE_OPERATION = 'DIVIDE'
     it('Test divide operation returns value', function () {
       const result = calculateNumber(DIVIDE_OPERATION, 3, 2)
-      assert.notEqual(result, undefined)
+      expect(result).to.not.be.undefined
     })
 
     it('Test that divide operation args are rounded', function () {
@@ -98,8 +97,7 @@ describe('calculateNumber', function () {
         [2, 1, 2], [2.5, 1.6, 1.5], [2.5, 1.2, 3], [1.2, 1.5, 0.5]
       ]
       testCases.forEach(testCase => {
-        assert.equal(calculateNumber(DIVIDE_OPERATION, testCase[0], testCase[1]), testCase[2])
-        assert.strictEqual(calculateNumber(DIVIDE_OPERATION, testCase[0], testCase[1]), testCase[2])
+        expect(calculateNumber(DIVIDE_OPERATION, testCase[0], testCase[1])).to.equal(testCase[2])
       })
     })
 
@@ -108,8 +106,7 @@ describe('calculateNumber', function () {
         [2, 0.5, 2], [2, 0.4, 'Error']
       ]
       testCases.forEach(testCase => {
-        assert.equal(calculateNumber(DIVIDE_OPERATION, testCase[0], testCase[1]), testCase[2])
-        assert.strictEqual(calculateNumber(DIVIDE_OPERATION, testCase[0], testCase[1]), testCase[2])
+        expect(calculateNumber(DIVIDE_OPERATION, testCase[0], testCase[1])).to.equal(testCase[2])
       })
     })
   })

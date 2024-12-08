@@ -1,5 +1,5 @@
 /*
- * @module 2-calcul
+ * @module 2-calcul_chai
  * Defines the arithmetic methods
  * @exports calculateNumber
  */
