@@ -10,7 +10,7 @@ const calculateNumber = require('./0-calcul')
 describe('calculateNumber', function () {
   function assertArgs (args) {
     Object.keys(args).forEach(key => {
-      assert.equal(calculateNumber(...JSON.parse(key)), args[key])
+      assert.strictEqual(calculateNumber(...JSON.parse(key)), args[key])
     })
   }
 
