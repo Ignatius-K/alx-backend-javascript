@@ -12,6 +12,9 @@ const CONFIG = {
 
 const app = express()
 
+// Register middleware
+app.use(express.json())
+
 app.get('/', (_, res) => {
   res.send('Welcome to the payment system')
 })
@@ -28,6 +31,15 @@ app.get('/available_payments', function (_, res) {
       paypal: false
     }
   })
+})
+
+app.post('/login', function (req, res) {
+  const { userName } = req.body
+  if (userName === undefined) {
+    res.status(404).send('User not found')
+    return
+  }
+  res.send(`Welcome ${userName}`)
 })
 
 app.listen(

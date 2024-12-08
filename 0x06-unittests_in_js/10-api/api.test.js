@@ -8,6 +8,7 @@ const promisify = require('util').promisify
 const request = require('request')
 
 const get = promisify(request.get)
+const post = promisify(request.post)
 
 const uri = 'http://localhost:7865'
 
@@ -76,6 +77,42 @@ describe('Available payments page', function () {
           paypal: false
         }
       })
+    })
+  })
+
+  describe('Login page', function () {
+    it('Return 200 when user is known', function (done) {
+      post({
+        url: `${uri}/login`,
+        body: { userName: "Test" },
+        json: true
+      }).then(response => {
+        response.statusCode === 200 
+          ? done() 
+          : done(new Error(`Unexpected status code ${response.statusCode}`))
+      }).catch(err => done(err))
+    })
+
+    it('Return expected body when user exists', function (done) {
+      post({
+        url: `${uri}/login`,
+        body: { userName: "Test" },
+        json: true
+      }).then(response => {
+        response.body === 'Welcome Test'
+          ? done() 
+          : done(new Error(`Unexpected status code ${response.statusCode}`))
+      }).catch(err => done(err))
+    })
+
+    it('Return 404 when user is not known', function (done) {
+      post({
+        url: `${uri}/login`
+      }).then(response => {
+        response.statusCode === 404
+          ? done() 
+          : done(new Error(`Unexpected status code ${response.statusCode}`))
+      }).catch(err => done(err))
     })
   })
 })
