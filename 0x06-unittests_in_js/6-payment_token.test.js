@@ -3,8 +3,6 @@
  *
  * Defines tests for module '6-payment_token'
  */
-const { expect } = require('chai')
-
 const getPaymentTokenFromAPI = require('./6-payment_token')
 
 describe('getPaymentTokenFromAPI', function () {
