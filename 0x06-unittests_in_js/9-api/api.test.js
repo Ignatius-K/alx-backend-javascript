@@ -42,9 +42,9 @@ describe('Cart page', function () {
   it('Returns expected body for existing id', function (done) {
     const existingId = 1
     get(`${uri}/cart/${existingId}`).then(response => {
-      response.statusCode === 200 
+      response.body === `Payment methods for cart ${existingId}`
         ? done() 
-        : done(new Error(`Unexpected status code ${response.statusCode}`))
+        : done(new Error(`Unexpected body ${response.body}`))
     }).catch(err => done(err))
   })
 
