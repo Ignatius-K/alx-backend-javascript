@@ -17,46 +17,29 @@ describe('sendPaymentRequestToApi', function () {
    */
   let sandbox;
 
-  before(function () {
-    sandbox = sinon.createSandbox()
-  })
-
-  afterEach(function () {
-    sandbox.restore()
-  })
-
   it('Test that the function logs', function () {
-    const logSpy = sandbox.spy(console, 'log')
+    const logSpy = sinon.spy(console, 'log')
     sendPaymentRequestToApi(0, 0) 
     expect(logSpy.called, "The function logs to console").to.be.true
     expect(logSpy.calledOnce, "The function logs only once to the console").to.be.true
+    sinon.restore()
   })
 
   it('Test that the function calls the calculateNumber util', function () {
-    const calculateNumberSpy = sandbox.spy(Utils, 'calculateNumber')
+    const calculateNumberSpy = sinon.spy(Utils, 'calculateNumber')
     sendPaymentRequestToApi(0, 0)
     expect(calculateNumberSpy.called, "The function calls calculateNumber util").to.be.true
     expect(calculateNumberSpy.calledOnce, "The function calls calculateNumber util once").to.be.true
     expect(calculateNumberSpy.calledWith('SUM', 0, 0), "The function calls calculateNumber with expected args").to.be.true
+    sinon.restore()
   })
 
   it('Test that the function logs correct output from calculateNumber', function () {
-    const calculateNumberSpy = sandbox.spy(Utils, 'calculateNumber')
-    const logSpy = sandbox.spy(console, 'log')
+    const calculateNumberSpy = sinon.spy(Utils, 'calculateNumber')
+    const logSpy = sinon.spy(console, 'log')
     sendPaymentRequestToApi(100, 20)
     expect(calculateNumberSpy.returned(120), "The calculateNumber returned as expected").to.be.true
     expect(logSpy.calledWith('The total is: 120'), "The function logs correct value from calculateNumber").to.be.true
+    sinon.restore()
   })
 })
-
-
-
-
-
-
-
-
-
-
-
-
