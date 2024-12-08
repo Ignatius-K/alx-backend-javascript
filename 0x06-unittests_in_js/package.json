@@ -1,0 +1,13 @@
+{
+  "name": "unittests",
+  "version": "1.0.0",
+  "description": "Dive into JS testing",
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha --exit"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mocha": "^6.2.2"
+  }
+}
